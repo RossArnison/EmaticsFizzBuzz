@@ -23,8 +23,8 @@ internal class CreateSequenceTests : Base.BaseFizzBuzzServiceTests
     public void ValidateInput_WhenEndIsGreaterThanStart_NoExceptionThrown()
     {
         // arrange
-        const int start = 10;
-        const int end = 5;
+        const int start = 5;
+        const int end = 10;
 
         // act
         var action = () => _service.CreateSequence(start, end);
