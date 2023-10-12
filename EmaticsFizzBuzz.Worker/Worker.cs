@@ -1,17 +1,30 @@
+using EmaticsFizzBuzz.Worker.Model;
+using EmaticsFizzBuzz.Worker.Service.Interface;
+using Microsoft.Extensions.Options;
+
 namespace EmaticsFizzBuzz.Worker;
 
 public class Worker : BackgroundService
 {
     private readonly IHostApplicationLifetime _hostLifetime;
-
-    public Worker(IHostApplicationLifetime hostLifetime)
+    private readonly IFizzBuzzService _service;
+    private readonly FizzBuzzSettings _settings;
+    
+    public Worker(IHostApplicationLifetime hostLifetime, IFizzBuzzService service, IOptions<FizzBuzzSettings> settings)
     {
         _hostLifetime = hostLifetime;
+        _service = service;
+        _settings = settings.Value;
     }
 
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken token)
     {
-        // TODO: Add Fizz Buzz Implementation
+        var sequence = await _service.CreateSequenceAsync(_settings.FizzBuzzStart, _settings.FizzBuzzEnd, token);
+        
+        foreach (var sequenceItem in sequence)
+        {
+            Console.WriteLine(sequenceItem);
+        }
         
         _hostLifetime.StopApplication();
     }
