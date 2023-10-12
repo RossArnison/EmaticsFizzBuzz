@@ -22,11 +22,6 @@ public class FizzBuzzService : Interface.IFizzBuzzService
         throw new NotImplementedException();
     }
 
-    private IEnumerable<string> ConvertToFizzBuzzSequence(IEnumerable<int> range)
-    {
-        throw new NotImplementedException();
-    }
-
     private string GetFizzBuzzValue(int item)
     {
         throw new NotImplementedException();
