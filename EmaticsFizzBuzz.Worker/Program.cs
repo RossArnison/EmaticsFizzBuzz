@@ -1,4 +1,6 @@
 using EmaticsFizzBuzz.Worker;
+using EmaticsFizzBuzz.Worker.Service;
+using EmaticsFizzBuzz.Worker.Service.Interface;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(ConfigureServices)
@@ -6,7 +8,7 @@ var host = Host.CreateDefaultBuilder(args)
 
 void ConfigureServices(HostBuilderContext context, IServiceCollection services)
 {
-    // TOD0: Setup service dependency injection
+    services.AddTransient<IFizzBuzzService, FizzBuzzService>();
     
     services.AddHostedService<Worker>();
 }
