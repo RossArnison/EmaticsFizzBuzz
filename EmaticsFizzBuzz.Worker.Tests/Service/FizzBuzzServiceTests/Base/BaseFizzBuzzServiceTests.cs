@@ -1,6 +1,15 @@
-﻿namespace EmaticsFizzBuzz.Worker.Tests.Service.FizzBuzzServiceTests.Base;
+﻿using EmaticsFizzBuzz.Worker.Service;
+using EmaticsFizzBuzz.Worker.Service.Interface;
 
-internal class BaseFizzBuzzServiceTests : TestBase
+namespace EmaticsFizzBuzz.Worker.Tests.Service.FizzBuzzServiceTests.Base;
+
+internal abstract class BaseFizzBuzzServiceTests
 {
+    protected IFizzBuzzService _service;
     
+    [SetUp]
+    public virtual void Initialise()
+    {
+        _service = new FizzBuzzService();
+    }
 }
